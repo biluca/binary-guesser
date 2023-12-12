@@ -1,3 +1,6 @@
+import json
+
+
 class CardGenerator:
     def generate_numbers(self):
         numbers = []
@@ -13,14 +16,21 @@ class CardGenerator:
 
     def generate_cards(self):
         numbers = self.generate_numbers()
-        cards = [[], [],[],[],[],[]]
+        cards = [[], [], [], [], [], []]
 
         for number in numbers:
             for i in range(0, 6):
                 if number[i] == "1":
                     cards[i].append(number[6])
-        
+
         return cards
 
-    
 
+cdg = CardGenerator()
+cds = cdg.generate_cards()
+print(cds)
+
+card_colletion = {"cards": cds}
+
+with open("sample.json", "w") as outfile:
+    json.dump(card_colletion, outfile)
